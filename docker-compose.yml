@@ -399,6 +399,19 @@ services:
       networks:
         - backend
 
+### ActiveMQ Container ######################################
+
+    activemq:
+      build: ./activemq
+      ports:
+        - "${ACTIVEMQ_TCP}:61616"
+        - "${ACTIVEMQ_UI}:8161"
+      privileged: true
+      depends_on:
+        - php-fpm
+      networks:
+        - backend
+
 ### RabbitMQ Container ######################################
 
     rabbitmq:

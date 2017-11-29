@@ -181,6 +181,15 @@ RABBITMQ_MANAGEMENT_HTTPS_HOST_PORT=15671
 RABBITMQ_DEFAULT_USER=guest
 RABBITMQ_DEFAULT_PASS=guest
 
+### ACTIVEMQ ######################################################################################################
+
+ACTIVEMQ_TCP=61616
+ACTIVEMQ_AMQP=5672
+ACTIVEMQ_STOMP=61613
+ACTIVEMQ_MQTT=1883
+ACTIVEMQ_WS=61614
+ACTIVEMQ_UI=8161
+
 ### ELASTICSEARCH ######################################################################################################
 
 ELASTICSEARCH_HOST_HTTP_PORT=9200
