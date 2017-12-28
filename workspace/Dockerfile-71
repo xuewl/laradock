@@ -85,17 +85,6 @@ RUN if [ ${INSTALL_LDAP} = true ]; then \
 ;fi
 
 #####################################
-# Swoole EXTENSION FOR PHP 7
-#####################################
-
-ARG INSTALL_SWOOLE=false
-RUN if [ ${INSTALL_SWOOLE} = true ]; then \
-    # Install Php Swoole Extension
-    apt-get update -yqq && \
-    apt-get install -y swoole \
-;fi
-
-#####################################
 # IMAP:
 #####################################
 
@@ -240,6 +229,19 @@ RUN if [ ${INSTALL_PHPREDIS} = true ]; then \
     printf "\n" | pecl -q install -o -f redis && \
     echo "extension=redis.so" >> /etc/php/7.1/mods-available/redis.ini && \
     phpenmod redis \
+;fi
+
+#####################################
+# PHP REDIS EXTENSION FOR PHP 7.1
+#####################################
+
+ARG INSTALL_SWOOLE=false
+ENV INSTALL_SWOOLE ${INSTALL_SWOOLE}
+RUN if [ ${INSTALL_SWOOLE} = true ]; then \
+    # Install Php Redis extension
+    printf "\n" | pecl -q install -o -f swoole && \
+    echo "extension=swoole.so" >> /etc/php/7.1/mods-available/swoole.ini && \
+    phpenmod swoole \
 ;fi
 
 #####################################
