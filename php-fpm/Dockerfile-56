@@ -102,6 +102,18 @@ RUN if [ ${INSTALL_XDEBUG} = false -a ${INSTALL_BLACKFIRE} = true ]; then \
     && printf "extension=blackfire.so\nblackfire.agent_socket=tcp://blackfire:8707\n" > $PHP_INI_DIR/conf.d/blackfire.ini \
 ;fi
 
+
+#####################################
+# GMP (GNU Multiple Precision):
+#####################################
+ARG INSTALL_GMP=false
+RUN if [ ${INSTALL_GMP} = true ]; then \
+    # Install the GMP extension
+    apt-get update -yqq && \
+    apt-get install -y libgmp-dev && \ 
+    docker-php-ext-install gmp \
+;fi
+
 #####################################
 # PHP REDIS EXTENSION FOR PHP 5
 #####################################

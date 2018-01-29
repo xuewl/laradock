@@ -238,10 +238,10 @@ RUN if [ ${INSTALL_PHPREDIS} = true ]; then \
 ARG INSTALL_SWOOLE=false
 ENV INSTALL_SWOOLE ${INSTALL_SWOOLE}
 RUN if [ ${INSTALL_SWOOLE} = true ]; then \
-    # Install Php Redis extension
+    # Install Php Swoole extension
     printf "\n" | pecl -q install -o -f swoole && \
     echo "extension=swoole.so" >> /etc/php/7.1/mods-available/swoole.ini && \
-    phpenmod swoole \
+    ln -s /etc/php/7.1/mods-available/swoole.ini /etc/php/7.0/cli/conf.d/20-swoole.ini \
 ;fi
 
 #####################################
